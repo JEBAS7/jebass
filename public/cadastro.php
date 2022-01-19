@@ -1,11 +1,11 @@
 <?php
 
 $nome = $_POST['nome'];
-$email = MD5($_POST['email']);
+$email = $_POST['email'];
 $connect = mysqli_connect('localhost', 'root', '', 'alcateia') or die('Não foi possível conectar');
 $db = mysqli_select_db($connect,'alcateia');
-$query_select = "SELECT nome FROM membros WHERE nome = $nome";
-$select = mysqli_query($query_select, $connect);
+$query_select = "SELECT nome FROM membros WHERE nome = '$nome'";
+$select = mysqli_query($connect, $query_select);
 $array = mysqli_fetch_array($select);
 $logarray = $array['nome'];
 
@@ -23,8 +23,8 @@ $logarray = $array['nome'];
         die();
 
       }else{
-        $query = "INSERT INTO usuarios (nome,email) VALUES ('$nome','$email')";
-        $insert = mysql_query($query,$connect);
+        $query = "INSERT INTO membros (nome,email) VALUES ('$nome','$email')";
+        $insert = mysqli_query($connect, $query);
 
         if($insert){
           echo"<script language='javascript' type='text/javascript'>
