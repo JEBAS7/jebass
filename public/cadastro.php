@@ -2,12 +2,12 @@
 
 $nome = $_POST['nome'];
 $email = $_POST['email'];
-$connect = mysqli_connect('localhost', 'root', '', 'alcateia') or die('Não foi possível conectar');
+$connect = mysqli_connect('localhost','root','', 'alcateia');
 $db = mysqli_select_db($connect, 'alcateia');
-$query_select = "SELECT nome FROM membros WHERE nome = '$nome'";
+$query_select = "SELECT * FROM membros WHERE nome = '$nome'";
 $select = mysqli_query($connect, $query_select);
 $array = mysqli_fetch_array($select);
-$logarray = $array['nome'];
+$logarray = $array('nome');
 
     if($nome == "" || $nome == null){
         echo"<script language='javascript' type='text/javascript'>
@@ -16,6 +16,7 @@ $logarray = $array['nome'];
 
     }else{
       if($logarray == $nome){
+
         echo"<script language='javascript' type='text/javascript'>
         alert('Esse nome já existe');window.location.href='
         cadastro.html';</script>";
